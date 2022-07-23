@@ -23,3 +23,72 @@ df_test['SalePrice']<-df_test2$SalePrice
 summary(df_train)
 ```
 
+```{r}
+cor(df_train$LotArea, df_train$SalePrice, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$LotArea, df_train$PoolArea, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$LotArea, df_train$GrLivArea, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$LotArea, df_train$TotRmsAbvGrd, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+cor(df_train$SalePrice, df_train$TotRmsAbvGrd, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$GarageArea, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+cor(df_train$SalePrice, df_train$GarageCars, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$TotalBsmtSF, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+cor(df_train$SalePrice, df_train$Fireplaces, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$KitchenAbvGr, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+cor(df_train$SalePrice, df_train$BedroomAbvGr, method = c("pearson", "kendall", "spearman"))
+```
+
+
+```{r}
+cor(df_train$SalePrice, df_train$FullBath, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$PoolArea, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+df_train$MasVnrArea[is.na(df_train$MasVnrArea)] <- median(df_train$MasVnrArea, na.rm=TRUE)
+cor(df_train$SalePrice, df_train$MasVnrArea, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$GrLivArea, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$EnclosedPorch, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$WoodDeckSF, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$ScreenPorch, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+cor(df_train$SalePrice, df_train$BsmtUnfSF, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+cor(df_train$SalePrice, df_train$HalfBath, method = c("pearson", "kendall", "spearman"))
+```
+
