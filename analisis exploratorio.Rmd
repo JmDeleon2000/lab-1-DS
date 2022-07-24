@@ -183,4 +183,11 @@ pie_labels<-c("Flat","Gable","Gambrel","Hip","Mansard","Shed")
 pie(pie_values, labels = pie_labels, main="Pie Chart RoofStyles")
 
 ```
+```{r}
+count(df_train, 'Foundation') 
+pie_values<- c(146,634,647,24,6,3)
+pie_labels<-c("BrkTil","CBlock","PConc","Slab","Stone","Wood")
+pie(pie_values, labels = pie_labels, main="Pie Chart RoofStyles")
+
+```
 
