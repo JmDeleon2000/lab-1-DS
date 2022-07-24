@@ -16,6 +16,7 @@ df_test <- read.csv("test.csv")
 df_train<- read.csv("train.csv")
 df_test2 <- read.csv("sample_submission.csv")
 df_test['SalePrice']<-df_test2$SalePrice
+df_train$MasVnrArea[is.na(df_train$MasVnrArea)] <- median(df_train$MasVnrArea, na.rm=TRUE)
 
 ```
 
@@ -69,7 +70,6 @@ cor(df_train$SalePrice, df_train$FullBath, method = c("pearson", "kendall", "spe
 cor(df_train$SalePrice, df_train$PoolArea, method = c("pearson", "kendall", "spearman"))
 ```
 ```{r}
-df_train$MasVnrArea[is.na(df_train$MasVnrArea)] <- median(df_train$MasVnrArea, na.rm=TRUE)
 cor(df_train$SalePrice, df_train$MasVnrArea, method = c("pearson", "kendall", "spearman"))
 ```
 ```{r}
@@ -90,5 +90,64 @@ cor(df_train$SalePrice, df_train$BsmtUnfSF, method = c("pearson", "kendall", "sp
 ```
 ```{r}
 cor(df_train$SalePrice, df_train$HalfBath, method = c("pearson", "kendall", "spearman"))
+```
+```{r}
+library(rela)
+library(psych)
+library(FactoMineR)
+library(fpc)
+library(factoextra)
+library(dplyr)  
+```
+```{r}
+data <- select(df_train, 
+               LotArea,
+               LotFrontage,
+               SalePrice,
+               TotRmsAbvGrd,
+               GarageArea,
+               GarageCars,
+               GrLivArea,
+               KitchenAbvGr,
+               BedroomAbvGr,
+               PoolArea,
+               EnclosedPorch,
+               WoodDeckSF,
+               ScreenPorch,
+               BsmtUnfSF,
+               HalfBath)
+summary(data)
+```
+```{r}
+rcor<-cor(data,use = "pairwise.complete.obs")
+det(rcor)
+
+```
+# el determinante de la matriz es casi 0, lo que indica que multicolinealidad
+```{r}
+paf_matrix<-paf(as.matrix(data))
+paf_matrix$KMO
+```
+# un KMO del 61% indica que se adecua
+```{r}
+paf_matrix$Bartlett
+```
+# un score de Barlett muy alto indica que es adecuado usar PCA
+```{r}
+compPrincPCA<-PCA(data,ncp=ncol(data), scale.unit = T)
+```
+```{r}
+summary(compPrincPCA)
+```
+
+```{r}
+fviz_contrib(compPrincPCA, choice = "var", axes = 1, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 2, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 3, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 4, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 5, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 6, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 7, top = 15)
+fviz_contrib(compPrincPCA, choice = "var", axes = 8, top = 15)
 ```
 
