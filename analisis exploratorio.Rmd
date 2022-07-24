@@ -151,3 +151,21 @@ fviz_contrib(compPrincPCA, choice = "var", axes = 7, top = 15)
 fviz_contrib(compPrincPCA, choice = "var", axes = 8, top = 15)
 ```
 
+```{r}
+install.packages('epiDisplay')
+library(epiDisplay)
+
+
+install.packages('plyr')
+library('plyr')
+count(df_train, 'HouseStyle') 
+tab1(df_train$HouseStyle, sort.group = "decreasing", cum.percent = TRUE)
+
+
+tab1(df_train$BldgType, sort.group = "decreasing", cum.percent = TRUE)
+tab1(df_train$Exterior1st, sort.group = "decreasing", cum.percent = TRUE)
+tab1(df_train$Exterior2nd ,sort.group = "decreasing", cum.percent = TRUE)
+
+```
+
+
